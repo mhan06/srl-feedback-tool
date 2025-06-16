@@ -4,45 +4,31 @@ body {
   padding: 20px;
 }
 .container {
-  max-width: 600px;
+  max-width: 900px;
   margin: auto;
   background: #ffffff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0px 0px 10px #ccc;
 }
-.feedback-box {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  border-left: 6px solid #6666cc;
-}
-.reaction-block {
-  margin: 10px 0;
-}
-.reactions {
-  font-size: 24px;
-}
-.reactions span {
-  cursor: pointer;
-  margin-right: 10px;
-}
-.reactions span.selected {
-  background-color: #d4eaff;
-  border-radius: 5px;
-  padding: 2px 5px;
-}
-textarea {
+table {
   width: 100%;
-  height: 80px;
-  margin-top: 10px;
-  padding: 10px;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
-.buttons {
-  margin-top: 10px;
+table, th, td {
+  border: 1px solid #cccccc;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
 }
 button {
-  padding: 8px 16px;
-  font-size: 16px;
+  padding: 8px 12px;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+canvas {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
