@@ -23,6 +23,7 @@ body {
 }
 .reactions {
   font-size: 24px;
+  cursor: pointer;
 }
 textarea {
   width: 100%;
