@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Feedback Viewer</title>
+  <title>SRL Feedback Viewer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="feedback-box red">
-    <h3>🟥 Task Strategies</h3>
-    <p>You seem to struggle with organizing your tasks. Try breaking them into steps.</p>
-    <div class="reactions">🙂 😐 😕 😠</div>
-    <textarea placeholder="Your thoughts..."></textarea>
-  </div>
+  <div class="container">
+    <h2>📘 Your Personalized Feedback</h2>
 
-  <div class="feedback-box green">
-    <h3>🟩 Help Seeking</h3>
-    <p>You actively seek help when needed. Keep it up!</p>
-    <div class="reactions">🙂 😐 😕 😠</div>
-    <textarea placeholder="Your thoughts..."></textarea>
+    <div class="feedback-box">
+      <p>
+        You seem to struggle with organizing your tasks and managing your time effectively. 
+        Consider breaking tasks into smaller steps and setting clearer goals.
+        On the other hand, you're doing well in seeking help and evaluating your progress.
+        Keep up the good work in those areas!
+      </p>
+    </div>
+
+    <div class="reaction-block">
+      <p>How did this feedback make you feel?</p>
+      <div class="reactions">🙂 😐 😕 😠</div>
+    </div>
+
+    <textarea placeholder="Leave a comment here..."></textarea>
+
+    <div class="buttons">
+      <button>Submit</button>
+    </div>
   </div>
 </body>
 </html>
