@@ -15,13 +15,21 @@ const db = firebase.database();
 const tableBody = document.querySelector("#feedbackTable tbody");
 const rows = [];
 
+const emojiCounts = { happy: 0, neutral: 0, confused: 0, angry: 0 };
+const commentByDate = {};
+
 db.ref('feedback_responses').on("value", snapshot => {
   tableBody.innerHTML = "";
   rows.length = 0;
+
+  Object.keys(emojiCounts).forEach(k => emojiCounts[k] = 0);
+  for (const k in commentByDate) delete commentByDate[k];
+
   snapshot.forEach(child => {
     const data = child.val();
     const row = [data.type, data.reaction || data.comment, data.timestamp];
     rows.push(row);
+
     const tr = document.createElement("tr");
     row.forEach(cell => {
       const td = document.createElement("td");
@@ -29,7 +37,16 @@ db.ref('feedback_responses').on("value", snapshot => {
       tr.appendChild(td);
     });
     tableBody.appendChild(tr);
+
+    if (data.type === "emoji") {
+      if (emojiCounts[data.reaction] !== undefined) emojiCounts[data.reaction]++;
+    } else if (data.type === "comment") {
+      const date = data.timestamp.split("T")[0];
+      commentByDate[date] = (commentByDate[date] || 0) + 1;
+    }
   });
+
+  updateCharts();
 });
 
 function downloadCSV() {
@@ -45,4 +62,46 @@ function downloadCSV() {
   a.download = "feedback_data.csv";
   a.click();
   URL.revokeObjectURL(url);
+}
+
+// Chart code
+let emojiChart, commentChart;
+
+function updateCharts() {
+  const ctx1 = document.getElementById("emojiChart").getContext("2d");
+  const ctx2 = document.getElementById("commentChart").getContext("2d");
+
+  if (emojiChart) emojiChart.destroy();
+  if (commentChart) commentChart.destroy();
+
+  emojiChart = new Chart(ctx1, {
+    type: "bar",
+    data: {
+      labels: ["🙂 Happy", "😐 Neutral", "😕 Confused", "😠 Angry"],
+      datasets: [{
+        label: "Emoji Reactions",
+        data: [
+          emojiCounts.happy,
+          emojiCounts.neutral,
+          emojiCounts.confused,
+          emojiCounts.angry
+        ],
+        backgroundColor: "#6495ED"
+      }]
+    }
+  });
+
+  commentChart = new Chart(ctx2, {
+    type: "line",
+    data: {
+      labels: Object.keys(commentByDate),
+      datasets: [{
+        label: "Comments per Day",
+        data: Object.values(commentByDate),
+        fill: false,
+        borderColor: "#FF6347",
+        tension: 0.1
+      }]
+    }
+  });
 }
