@@ -5,11 +5,16 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
     <h2>📊 Feedback Admin Panel</h2>
     <button onclick="downloadCSV()">⬇️ Download CSV</button>
+
+    <canvas id="emojiChart" height="150"></canvas>
+    <canvas id="commentChart" height="150"></canvas>
+
     <table id="feedbackTable">
       <thead>
         <tr>
