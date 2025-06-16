@@ -13,10 +13,10 @@ body {
 }
 .feedback-box {
   background-color: #f9f9f9;
-  border-left: 6px solid #339966;
   padding: 15px;
   border-radius: 6px;
   margin-bottom: 20px;
+  border-left: 6px solid #6666cc;
 }
 .reaction-block {
   margin: 10px 0;
