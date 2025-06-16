@@ -20,6 +20,17 @@ function submitReaction(reaction) {
     timestamp: timestamp
   });
   console.log("Emoji submitted:", reaction);
+
+  // Highlight selected emoji
+  document.querySelectorAll('.reactions span').forEach(el => el.classList.remove('selected'));
+  const emojiMap = {
+    happy: "🙂", neutral: "😐", confused: "😕", angry: "😠"
+  };
+  document.querySelectorAll('.reactions span').forEach(el => {
+    if (el.textContent === emojiMap[reaction]) {
+      el.classList.add('selected');
+    }
+  });
 }
 
 function submitComment() {
