@@ -3,6 +3,8 @@
 <head>
   <title>SRL Feedback Viewer</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
   <div class="container">
@@ -11,22 +13,29 @@
     <div class="feedback-box unified">
       <p>
         You seem to struggle with organizing your tasks and managing your time effectively. 
-        Consider breaking them into smaller steps and setting clearer goals. 
-        On the other hand, you're doing well in seeking help and evaluating your progress. 
+        Consider breaking them into smaller steps and setting clearer goals.
+        On the other hand, you're doing well in seeking help and evaluating your progress.
         Keep up the good work in those areas!
       </p>
     </div>
 
     <div class="reaction-block">
       <p>How did this feedback make you feel?</p>
-      <div class="reactions">🙂 😐 😕 😠</div>
+      <div class="reactions">
+        <span onclick="submitReaction('happy')">🙂</span>
+        <span onclick="submitReaction('neutral')">😐</span>
+        <span onclick="submitReaction('confused')">😕</span>
+        <span onclick="submitReaction('angry')">😠</span>
+      </div>
     </div>
 
-    <textarea placeholder="Leave a comment here..."></textarea>
+    <textarea id="commentBox" placeholder="Leave a comment here..."></textarea>
 
     <div class="buttons">
-      <button>Submit</button>
+      <button onclick="submitComment()">Submit</button>
     </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
